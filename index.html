@@ -18,17 +18,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <style></style>
+    <style>
+      dialog::backdrop {
+        background-color: rgba(0, 0, 0, 0.3);
+      }
+    </style>
   </head>
   <body>
     <button id="modalButton">Show Modal</button>
-    <dialog id="modal">Hi! I'm modal</dialog>
+    <dialog id="modal">
+      Hi! I'm modal
+      <form method="dialog">
+        <button value="close">Close</button>
+        <button value="confirm">Confirm</button>
+      </form>
+    </dialog>
     <script>
       const modalButton = document.querySelector("#modalButton");
       const modal = document.querySelector("#modal");
       modalButton.addEventListener("click", () => {
         console.log("click");
         modal.showModal();
+      });
+      modal.addEventListener("close", () => {
+        console.log(modal.returnValue);
       });
     </script>
   </body>
